@@ -1,11 +1,18 @@
 # run_pipeline.py
 
+import sys
+import os
+
+# TEMPO 내부 모듈 경로 등록
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "TEMPO")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "TEMPO", "tempo")))
+
 from src.generate_news_summary import generate_news_summary
 from src.generate_impact_score import generate_impact_scores
 from src.prepare_input_tensor import prepare_input_tensor
 from src.recommend_exchange_dates import recommend_exchange_dates
 
-from TEMPO.tempo.models.TEMPO import TEMPO
+from tempo.models.TEMPO import TEMPO
 import torch
 from src.config import API_KEY
 
