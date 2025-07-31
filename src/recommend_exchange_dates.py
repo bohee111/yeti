@@ -50,21 +50,7 @@ def recommend_exchange_dates(input_tensor, scaler_fx, model, start_date_str, end
         "predicted_fx": predicted_fx
     })
 
-    # 시각화
-    plt.figure(figsize=(12, 5))
-    plt.plot(forecast_df['date'], forecast_df['predicted_fx'], marker='o', color='blue')
-    plt.title(f"💱 환율 예측 ({today.date()} ~ {end_date.date()})")
-    plt.xlabel("Date")
-    plt.ylabel("Predicted KRW/JPY")
-    plt.grid(True)
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    plt.savefig("forecast_plot.png")
-    display.display(plt.gcf())  # Colab에서도 보이도록 명시적으로 출력
-    plt.close()
-
     # 낮은 환율 추천 날짜
     recommended = forecast_df.sort_values('predicted_fx').head(top_k).sort_values('date')
 
-    return recommended
+    return forecast_df, recommended
