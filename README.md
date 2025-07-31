@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ### 2️⃣ API 키 등록
 
-본인의 **Gemini API 키**를 입력합니다:
+본인의 **Gemini API 키**를 입력합니다.
 
 ```python
 import os
@@ -45,7 +45,7 @@ os.environ["GEMINI_API_KEY"] = "실제 API 키"
 python run_pipeline.py
 ```
 
-실행 중 다음과 같은 입력을 받습니다:
+실행 중 다음과 같은 입력을 받습니다.
 
 ```
 출국일을 입력하세요 (예: 2025-08-01):
