@@ -5,7 +5,7 @@ from src.generate_impact_score import generate_impact_scores
 from src.prepare_input_tensor import prepare_input_tensor
 from src.recommend_exchange_dates import recommend_exchange_dates
 
-from tempo.models.TEMPO import TEMPO
+from TEMPO.tempo.models.TEMPO import TEMPO
 import torch
 from src.config import API_KEY
 
