@@ -17,6 +17,7 @@ import torch
 from src.config import API_KEY
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -61,8 +62,22 @@ def main():
     출국일 = input("출국일을 입력하세요 (예: 2025-08-01): ")
     입국일 = input("입국일을 입력하세요 (예: 2025-08-10): ")
 
-    추천결과 = recommend_exchange_dates(input_tensor, scaler_fx, model, 출국일, 입국일, top_k=5)
-
+    forecast_df, 추천결과 = recommend_exchange_dates(input_tensor, scaler_fx, model, 출국일, 입국일, top_k=5)
+    
+    # 7. 시각화
+    print("\n📊 환율 예측 결과 시각화 중...")
+    plt.figure(figsize=(12, 5))
+    plt.plot(forecast_df["date"], forecast_df["predicted_fx"], marker='o', color='blue')
+    plt.title("💱 환율 예측 결과")
+    plt.xlabel("Date")
+    plt.ylabel("Predicted KRW/JPY")
+    plt.grid(True)
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("forecast_plot.png")
+    plt.show()
+    plt.close()
+    
     # 8. 결과 출력
     print("\n📅 오늘 날짜 기준:", pd.to_datetime("today").strftime("%Y-%m-%d"))
     print("💱 환율이 낮아 환전을 추천하는 날짜:")
