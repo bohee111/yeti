@@ -35,7 +35,8 @@ pip install -r requirements.txt
 `src/config.py`에서 본인의 **Gemini API 키**를 입력합니다:
 
 ```python
-API_KEY = "YOUR_ACTUAL_GEMINI_API_KEY"
+import os
+os.environ["GEMINI_API_KEY"] = "실제 API 키"
 ```
 
 ### 3️⃣ 전체 파이프라인 실행
