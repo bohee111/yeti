@@ -1,6 +1,7 @@
 # config.py
 
-API_KEY = "YOUR_ACTUAL_GEMINI_API_KEY"
+import os
+API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 # 공통 파일명
 NEWS_CSV_FILENAME = "data/monthly_news.csv"
