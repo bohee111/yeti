@@ -3,6 +3,7 @@
 import pandas as pd
 import torch
 import matplotlib.pyplot as plt
+import IPython.display as display
 
 
 def recommend_exchange_dates(input_tensor, scaler_fx, model, start_date_str, end_date_str, top_k=5):
@@ -58,7 +59,10 @@ def recommend_exchange_dates(input_tensor, scaler_fx, model, start_date_str, end
     plt.grid(True)
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+    
+    plt.savefig("forecast_plot.png")
+    display.display(plt.gcf())  # Colab에서도 보이도록 명시적으로 출력
+    plt.close()
 
     # 낮은 환율 추천 날짜
     recommended = forecast_df.sort_values('predicted_fx').head(top_k).sort_values('date')
