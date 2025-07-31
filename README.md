@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ### 2️⃣ API 키 등록
 
-`src/config.py`에서 본인의 **Gemini API 키**를 입력합니다:
+본인의 **Gemini API 키**를 입력합니다:
 
 ```python
 import os
