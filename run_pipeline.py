@@ -1,6 +1,5 @@
 # run_pipeline.py
 
-from src.set_seed import set_seed
 from src.generate_news_summary import generate_news_summary
 from src.generate_impact_score import generate_impact_scores
 from src.data_preprocessing import merge_news_and_fx
@@ -16,6 +15,16 @@ import pandas as pd
 
 def main():
     # 1. Seed 고정
+    import random
+    import numpy as np
+    import torch
+
+    def set_seed(seed: int = 42):
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+
     set_seed(42)
 
     # 2. 월별 뉴스 요약 생성
