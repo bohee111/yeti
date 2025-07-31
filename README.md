@@ -24,7 +24,7 @@
 
 ## 🚀 실행 방법
 
-### 1️⃣ 의존성 설치
+### 1️⃣ requirements 설치
 
 ```bash
 pip install -r requirements.txt
@@ -88,7 +88,7 @@ mv my_updated_exchange_data.csv data/주요국 통화의 대원화환율_3013371
 ```bash
 .
 ├── run_pipeline.py                 # 전체 파이프라인 실행 스크립트
-├── requirements.txt                # 의존성 목록
+├── requirements.txt                # requirements 목록
 ├── TEMPO/                          # TEMPO 모델
 ├── data/                           
 │   └── 주요국 통화의 대원화환율_30133713.csv
