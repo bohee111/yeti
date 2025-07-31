@@ -39,16 +39,35 @@ def generate_impact_scores(
     output_csv_path=IMPACT_SCORE_CSV_FILENAME
 ):
     genai.configure(api_key=API_KEY)
-    model = genai.GenerativeModel("gemini-2.5-pro")
 
     news_df = pd.read_csv(input_csv_path)
     news_df['date'] = pd.to_datetime(news_df['date'])
 
-    tqdm.pandas()
-    news_df['impact_score'] = news_df['summary'].progress_apply(
-        lambda text: get_impact_score(text, model)
-    )
+    error_count = 0
+    max_errors = 10
+    model_name = "gemini-2.5-pro"
+    model = genai.GenerativeModel(model_name)
 
+    impact_scores = []
+
+    for idx, row in tqdm(news_df.iterrows(), total=len(news_df)):
+        score = get_impact_score(row['summary'], model)
+        if score == 0.0:
+            error_count += 1
+            if error_count >= max_errors and model_name == "gemini-2.5-pro":
+                print("🔄 오류 10회 초과. gemini-2.5-flash로 모델 교체 후 재시도...")
+                model_name = "gemini-2.5-flash"
+                model = genai.GenerativeModel(model_name)
+                # 다시 처음부터 재계산
+                impact_scores = []
+                error_count = 0
+                for _, row in tqdm(news_df.iterrows(), total=len(news_df)):
+                    score = get_impact_score(row['summary'], model)
+                    impact_scores.append(score)
+                break
+        impact_scores.append(score)
+
+    news_df['impact_score'] = impact_scores
     news_df.to_csv(output_csv_path, index=False)
     print(f"✅ impact_score 저장 완료 → {output_csv_path}")
 
@@ -56,4 +75,3 @@ def generate_impact_scores(
 # 메인 실행
 if __name__ == "__main__":
     generate_impact_scores()
-
