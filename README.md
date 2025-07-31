@@ -84,10 +84,14 @@ python run_pipeline.py
 ├── run_pipeline.py                 # 전체 파이프라인 실행 스크립트
 ├── requirements.txt                # requirements 목록
 ├── TEMPO/                          # TEMPO 모델
+├── rule_based_classifier/
+│   ├── __init__.py
+│   ├── classifier.py               # 규칙 기반 분류 함수
+│   └── 규칙_기반_분류.ipynb        # 테스트용 노트북
 ├── data/                           
 │   └── 주요국 통화의 대원화환율_30133713.csv
 └── src/
-    ├── __init__.py                 # 패키지 초기화
+    ├── __init__.py                 
     ├── config.py                   # API 키 및 파일 경로 설정
     ├── generate_news_summary.py    # 월별 뉴스 요약 생성 (Gemini API)
     ├── generate_impact_score.py    # 뉴스 요약 영향력 점수 생성
