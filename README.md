@@ -88,6 +88,8 @@ mv my_updated_exchange_data.csv data/주요국 통화의 대원화환율_3013371
 .
 ├── run_pipeline.py                 # 전체 파이프라인 실행 스크립트
 ├── requirements.txt                # 의존성 목록
+├── data/
+│   └── 주요국 통화의 대원화환율_30133713.csv
 └── src/
     ├── __init__.py                 # 패키지 초기화
     ├── config.py                   # API 키 및 파일 경로 설정
