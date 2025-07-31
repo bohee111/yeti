@@ -35,15 +35,11 @@ def main():
     print("📌 Step 2: 영향력 점수 생성")
     generate_impact_scores()
 
-    # 4. 뉴스와 환율 데이터 병합
-    print("📌 Step 3: 뉴스 + 환율 데이터 병합")
-    merge_news_and_fx()
-
-    # 5. 시계열 입력 텐서 생성
+    # 4. 시계열 입력 텐서 생성
     print("📌 Step 4: 시계열 입력 텐서 생성")
     input_tensor, scaler_fx, merged_df = prepare_input_tensor()
 
-    # 6. TEMPO 모델 불러오기
+    # 5. TEMPO 모델 불러오
     print("📌 Step 5: TEMPO 모델 불러오기")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TEMPO.load_pretrained_model(
