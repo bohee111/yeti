@@ -2,7 +2,6 @@
 
 from src.generate_news_summary import generate_news_summary
 from src.generate_impact_score import generate_impact_scores
-from src.data_preprocessing import merge_news_and_fx
 from src.prepare_input_tensor import prepare_input_tensor
 from src.recommend_exchange_dates import recommend_exchange_dates
 
@@ -39,7 +38,7 @@ def main():
     print("📌 Step 4: 시계열 입력 텐서 생성")
     input_tensor, scaler_fx, merged_df = prepare_input_tensor()
 
-    # 5. TEMPO 모델 불러오
+    # 5. TEMPO 모델 불러오기
     print("📌 Step 5: TEMPO 모델 불러오기")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TEMPO.load_pretrained_model(
