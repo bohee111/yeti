@@ -11,6 +11,7 @@ from src.generate_news_summary import generate_news_summary
 from src.generate_impact_score import generate_impact_scores
 from src.prepare_input_tensor import prepare_input_tensor
 from src.recommend_exchange_dates import recommend_exchange_dates
+from rule_based_classifier.classifier import classify_customer_sensitivity_interactive_with_tiered_reason_score
 
 from tempo.models.TEMPO import TEMPO
 import torch
@@ -82,6 +83,15 @@ def main():
     print("\n📅 오늘 날짜 기준:", pd.to_datetime("today").strftime("%Y-%m-%d"))
     print("💱 환율이 낮아 환전을 추천하는 날짜:")
     print(추천결과.to_string(index=False))
+
+    # 9. 사용자 민감도 분류 수행
+    print("\n🧑 사용자 환율 민감도 분석 시작")
+    group = classify_customer_sensitivity_interactive_with_tiered_reason_score()
+
+    if group == '고민감 그룹':
+        print("👉 전략 제안: 환율이 낮은 날짜에 분할 환전을 고려하세요.")
+    else:
+        print("👉 전략 제안: 환율 민감도가 낮으므로 일괄 환전도 무방합니다.")
 
 
 if __name__ == "__main__":
