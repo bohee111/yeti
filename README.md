@@ -77,12 +77,6 @@ python run_pipeline.py
 최신 환율 데이터를 직접 다운로드하여 **같은 포맷**의 CSV로 저장한 후,  
 `data/주요국 통화의 대원화환율_30133713.csv` 파일을 교체해 주세요.
 
-```bash
-# 예시 (기존 파일 백업 후 교체)
-mv data/주요국 통화의 대원화환율_30133713.csv
-mv my_updated_exchange_data.csv data/주요국 통화의 대원화환율_30133713.csv
-```
-
 ## 🗂️ 폴더 구조
 
 ```bash
